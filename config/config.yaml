@@ -1,0 +1,11 @@
+port: 8022
+database:
+  driver: "mongodb"
+  address: "mongodb_service"
+  port: 27017
+  username: "user"
+  password: "password"
+  name: "testdb"
+jwt:
+  secret: "secret"
+  expires: 24

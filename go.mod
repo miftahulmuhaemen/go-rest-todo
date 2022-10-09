@@ -10,6 +10,7 @@ require (
 	github.com/go-playground/validator/v10 v10.11.1 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/labstack/echo/v4 v4.9.0 // indirect
+	github.com/labstack/gommon v0.4.0
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/moby/term v0.0.0-20220808134915-39b0c02b01ae // indirect
 	github.com/opencontainers/runc v1.1.4 // indirect
