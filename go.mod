@@ -7,6 +7,7 @@ require (
 	github.com/docker/cli v20.10.18+incompatible // indirect
 	github.com/docker/docker v20.10.18+incompatible // indirect
 	github.com/docker/go-units v0.5.0 // indirect
+	github.com/gavv/httpexpect/v2 v2.3.1
 	github.com/go-playground/validator/v10 v10.11.1 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/labstack/echo/v4 v4.9.0 // indirect
