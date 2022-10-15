@@ -15,16 +15,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-/*
-
-1. Call Endpoint
-2. body/query confirmation
-3. mock
-4. table
-5. all error business
-
-*/
-
 func TestControllerUserRegister(t *testing.T) {
 
 	e := echo.New()
