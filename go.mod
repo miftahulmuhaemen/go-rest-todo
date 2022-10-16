@@ -10,6 +10,7 @@ require (
 	github.com/gavv/httpexpect/v2 v2.3.1
 	github.com/go-playground/validator/v10 v10.11.1 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
+	github.com/jonboulle/clockwork v0.3.0 // indirect
 	github.com/labstack/echo/v4 v4.9.0 // indirect
 	github.com/labstack/gommon v0.4.0
 	github.com/mitchellh/mapstructure v1.5.0 // indirect

@@ -2,40 +2,38 @@ package user
 
 import (
 	"net/http"
-	"reflect"
 
+	businessErr "go-rest-todo/business"
+	business "go-rest-todo/business/user"
+	core "go-rest-todo/core/user"
 	"go-rest-todo/modules/api/common"
 
-	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 )
 
-func Register(c echo.Context) error {
+type Controller struct {
+	service business.Service
+}
 
-	type Rets struct {
-		RoleID   string `json:"role_id" validate:"required"`
-		Name     string `json:"name" validate:"required"`
-		Username string `json:"username" validate:"required"`
-		Password string `json:"password" validate:"required"`
+func NewController(service business.Service) *Controller {
+	return &Controller{
+		service: service,
 	}
+}
 
-	ret := new(Rets)
-	c.Bind(ret)
+func (controller *Controller) Register(c echo.Context) error {
 
-	if reflect.DeepEqual(*ret, Rets{}) {
-		return c.JSON(http.StatusBadRequest, common.GetErrorMessage("52C", "Empty"))
-	} else if ret.Username == "existuser" {
-		return c.JSON(http.StatusBadRequest, common.GetErrorMessage("51C", ""))
-	}
+	bindValue := new(core.User)
+	c.Bind(bindValue)
 
-	vald := *validator.New()
-	err := vald.Struct(ret)
+	ret, err := controller.service.Register(*bindValue)
 	if err != nil {
-		var errStr string
-		for _, er := range err.(validator.ValidationErrors) {
-			errStr += er.Field() + ","
+		if err == businessErr.ErrInvalidSpec {
+			return c.JSON(http.StatusBadRequest, common.GetErrorMessage("52C", ""))
+		} else if err == businessErr.ErrInvalidExistingUsername {
+			return c.JSON(http.StatusBadRequest, common.GetErrorMessage("51C", ""))
 		}
-		return c.JSON(http.StatusBadRequest, common.GetErrorMessage("52C", errStr))
+		return c.JSON(http.StatusInternalServerError, common.GetErrorMessage("53S", ""))
 	}
 
 	return c.JSON(http.StatusCreated, ret)
