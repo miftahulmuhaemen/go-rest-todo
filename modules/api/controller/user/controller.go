@@ -36,5 +36,15 @@ func (controller *Controller) Register(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, common.GetErrorMessage("53S", ""))
 	}
 
+	// vald := *validator.New()
+	// err := vald.Struct(ret)
+	// if err != nil {
+	// 	var errStr string
+	// 	for _, er := range err.(validator.ValidationErrors) {
+	// 		errStr += er.Field() + ","
+	// 	}
+	// 	return c.JSON(http.StatusBadRequest, common.GetErrorMessage("52C", errStr))
+	// }
+
 	return c.JSON(http.StatusCreated, ret)
 }
